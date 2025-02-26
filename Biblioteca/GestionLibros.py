@@ -18,11 +18,16 @@ def leerInt(mensaje):
     except:
         return -1
 
-def datosLibro(op):
+def datosLibro(formato):
     titulo = input("Introduzca el titulo de la obra: ")
     autor = input("Introduzca el autor de la obra: ")
     ano = leerInt("Introduzca el año de la obra: ")
-    if op == 1:
+
+    while ano == -1:    #En caso de que el user introduzca una letra
+        print("El año no puede contener letras")
+        ano = leerInt("Introduzca un año válido para la obra: ")
+
+    if formato == 1:
         ubi = input("introduzca la ubicación del libro: ")
         Libro = Fisicos(titulo, autor, ano, ubi)
     else:
@@ -45,7 +50,7 @@ while True:
     imprimirMenu()
     match(leerInt("Selecciona tu opcion: ")):
         case 0:
-            print("SALIENDO DEL PROGRAMA")
+            print("SALIENDO DEL PROGRAMA...")
             exit(0)
 
         case 1:
@@ -56,10 +61,10 @@ while True:
                     1_Libro Físico
                     2_Libro Electrónico""")
 
-                op = leerInt("Selecciona tu opcion: ")
+                formato = leerInt("Selecciona tu opcion: ")
 
-                if op == 1 or op == 2:
-                    listaLibros.append(datosLibro(op))
+                if formato == 1 or formato == 2:
+                    listaLibros.append(datosLibro(formato))
                     print("Libro guardado con éxito!")
                     break
                 else:
@@ -86,6 +91,7 @@ while True:
                 libroActualizar = leerInt("Introduzca el libro que quiere actualizar: ")
 
                 if libroActualizar == -1 or libroActualizar >= len(listaLibros):    #Comparamos si el valor introducido esta en la listaLibros
+                    #El -1 es porque si la entrada no es válida, el metodo "leerInt()" devuelve -1
                     print("opción no válida")
                 else:
                     fisico = False
@@ -111,7 +117,7 @@ while True:
                                 print("Debes introducir Y o N")
 
                         listaLibros[libroActualizar] = libro
-                    else:       #Si no Físico(es Electrónico)
+                    else:       #Si no es Físico(es Electrónico)
                         while True:
                             fisicoElectronico = input(
                                 "El libro esta guardado como un libro electrónico, quieres modificar este campo?"
