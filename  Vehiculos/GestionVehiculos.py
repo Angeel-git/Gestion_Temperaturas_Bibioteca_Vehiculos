@@ -104,7 +104,7 @@ def mostrarVehiculos():
 def recuentoVehiculos():
     coches = 0
     motos = 0
-    
+
     for vehiculo in listaVehiculos:
         if(isinstance(vehiculo, Coche)):
             coches += 1
