@@ -1,7 +1,6 @@
 from Coche import Coche
 from Moto import Moto
 
-
 def imprimirMenu():
     print("""
     MENÚ:
@@ -9,7 +8,8 @@ def imprimirMenu():
     1. Agregar un nuevo vehiculo
     2. Mostrar todos los vehículos registrados
     3. Actualizar un vehículo
-    4. Eliminar un vehículo existente""")
+    4. Eliminar un vehículo existente
+    5. Recuento de vehículos""")
 
 def leerInt(mensaje):
     try:
@@ -66,7 +66,6 @@ def datosVehiculoConID(id, tipo):
 
     return vehiculo
 
-
 def actualizarVehiculo(vehiculo):
     coche = vehiculoCoche(vehiculo)
     if coche:
@@ -79,7 +78,6 @@ def actualizarVehiculo(vehiculo):
         # Pasar el ID original al crear el nuevo objeto Moto
         v = datosVehiculoConID(vehiculo.id, 1)
         return v
-
 
 def vehiculoCoche(vehiculo):
     if isinstance(vehiculo, Coche): #Si el vehiculo es un coche
@@ -99,11 +97,21 @@ def vehiculoCoche(vehiculo):
         else:
             return False
 
-
-
 def mostrarVehiculos():
     for vehiculo in listaVehiculos:
         vehiculo.mostrarDatos()
+
+def recuentoVehiculos():
+    coches = 0
+    motos = 0
+    
+    for vehiculo in listaVehiculos:
+        if(isinstance(vehiculo, Coche)):
+            coches += 1
+        else:
+            motos += 1
+
+    print(f"Coches: {coches}\nMotos: {motos}\nTotal: {coches + motos}")
 
 #MAIN-------------------------------------------------------------------------------------------------------------------
 
@@ -176,11 +184,14 @@ while True:
                 else:
                     for vehiculo in listaVehiculos:
                         if vEliminar == vehiculo.id:
-
                             vEncontrado = vehiculo
                             break
                     listaVehiculos.remove(vEncontrado)
                     print("Vehiculo eliminado")
+
+        case 5:
+            print("OPCIÓN SELECCIONADA -> Recuento de vehículos")
+            recuentoVehiculos()
 
         case _:
             print("La opción no existe en el menú")
