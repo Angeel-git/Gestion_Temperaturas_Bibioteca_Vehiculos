@@ -37,7 +37,6 @@ def datosVehiculo(tipo):
             vehiculo = Coche(id, marca, modelo, ano, numPuertas)
         except:
             print("Las puertas tienen que ser un número válido")
-
     else:
         tipoMotor = input("Introduzca el tipo de motor que tiene la moto: ")
         vehiculo = Moto(id, marca, modelo, ano, tipoMotor)
