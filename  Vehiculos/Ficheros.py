@@ -7,8 +7,9 @@ def leerFicheroCSV(nombreFichero):
 
     with open(nombreFichero, 'r') as ficheroCSV:
         lector = csv.reader(ficheroCSV, delimiter=';')
+        i = 0
         for linea in lector:
-            id, marca, modelo, ano = int(linea[0]), linea[1], linea[2], linea[3]
+            id, marca, modelo, ano = int(i), linea[1], linea[2], linea[3]
 
             if linea[4].isdigit():  # Si el campo 4 de la línea es un dígito, es un coche
                 numPuertas = int(linea[4])
@@ -18,7 +19,7 @@ def leerFicheroCSV(nombreFichero):
                 vehiculo = Moto(id, marca, modelo, ano, tipoMotor)
 
             vehiculos.append(vehiculo)  # Añadir el vehículo a la lista
-
+            i = i +1
     return vehiculos
 
 def guardarVehiculos(nombreFichero, listaVehiculos):

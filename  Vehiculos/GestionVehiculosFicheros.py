@@ -43,21 +43,21 @@ def datosNuevoVehiculo():
 def modificarVehiculo(id):
 
     print("El vehículo que va a actualizar es: ")
-    vehiculos[id - 1].mostrarDatos()
+    vehiculos[id].mostrarDatos()
 
 
     marca = input("Introduzca la marca del vehículo que desea registrar: ")
     modelo = input("Introduzca el modelo del vehículo que desea registrar: ")
     ano = int(input("Introduzca el año de la fecha de fabricación del vehículo: "))
 
-    coche = modificarTipoVehiculo(vehiculos[id - 1])      #Preguntamos si quiere cambiar el tipo del Vehículo
+    coche = modificarTipoVehiculo(vehiculos[id])      #Preguntamos si quiere cambiar el tipo del Vehículo
 
     if coche:
         numPuertas = int(input("Introdzca el número de puertas del coche: "))
-        vehiculos[id - 1] = Coche(id, marca, modelo, ano, numPuertas)
+        vehiculos[id] = Coche(id, marca, modelo, ano, numPuertas)
     else:
         tipoMotor = input("Introduzca el tipo de motor que tiene la moto: ")
-        vehiculos[id - 1] = Moto(id, marca, modelo, ano, tipoMotor)
+        vehiculos[id] = Moto(id, marca, modelo, ano, tipoMotor)
 
 
 
@@ -119,6 +119,7 @@ while True:
                 print("Actualizar un vehículos del fichero")
                 for Vehiculo in vehiculos:
                     print(f"Vehiculo {Vehiculo.id}: {Vehiculo.marca}, {Vehiculo.modelo}")
+
                 vModificar = int(input("Introduzca el id del Vehículo que desea actualizar: "))
                 modificarVehiculo(vModificar)
 
@@ -129,7 +130,7 @@ while True:
                 for Vehiculo in vehiculos:
                     print(f"Vehiculo {Vehiculo.id}: {Vehiculo.marca}, {Vehiculo.modelo}")
                 idEliminar = int(input("Introduzca el id del Vehículo que desea eliminar: "))
-                vEliminar = vehiculos[idEliminar - 1]
+                vEliminar = vehiculos[idEliminar]
                 vehiculos.remove(vEliminar)
 
                 guardarVehiculos("Vehiculos.csv", vehiculos)  # Actualizamos el contenido del fichero
